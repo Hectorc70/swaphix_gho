@@ -20,6 +20,9 @@ const Navbar = () => {
       case 1:
           navigate(routesNamesApp.reciveTransaction)
           break;
+      case 2:
+        navigate(routesNamesApp.balance)
+        break;
     }
   }
   const setVisible = (value: boolean) => {
@@ -38,6 +41,9 @@ const Navbar = () => {
           </span>
           <span className="desktop-option-side-bar" onClick={() => navigateOption(1)}>
             <i className="">Recibir GHO</i>
+          </span>
+          <span className="desktop-option-side-bar" onClick={() => navigateOption(2)}>
+            <i className="">Balance</i>
           </span>
         </div>
         <div className="sm:hidden">

@@ -29,6 +29,10 @@ const SideNavCustom = () => {
                 navigate(routesNamesApp.reciveTransaction)
                 setVisible(false);
                 break;
+            case 2:
+                navigate(routesNamesApp.balance)
+                setVisible(false);
+                break;
         }
 
     };
@@ -48,6 +52,9 @@ const SideNavCustom = () => {
                 </div>
                 <div className={index == 1 ? "item-main-select mt-5" : "item-main  mt-5"} onClick={() => selectItem(1)}>
                     <p>Recibir GHO</p>
+                </div>
+                <div className={index == 2 ? "item-main-select mt-5" : "item-main  mt-5"} onClick={() => selectItem(2)}>
+                    <p>Balance</p>
                 </div>
             </Sidebar>
         </div>
