@@ -34,7 +34,7 @@ const SideNavCustom = () => {
     };
 
     const sidebar = {
-        background: '#40006A',
+        background: '#1e0234',
         padding: '0px',
         width: '100%',
         zIndex: '10'

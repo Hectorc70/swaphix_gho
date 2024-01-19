@@ -173,11 +173,11 @@
 /* } */
 
 .item-main{
-  @apply  bg-splash  py-8 w-screen text-center
+  @apply  bg-splash  py-8 w-screen text-center hover:bg-purple 
 }
 
 .item-main-select{
-  @apply  bg-splash  px-8  py-8 w-screen text-center
+  @apply  bg-purple  px-8  py-8 w-screen text-center
 
 }
 .item-main-select p{
