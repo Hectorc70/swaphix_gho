@@ -8,4 +8,5 @@ export const routesNames = {
 export const routesNamesApp = {
   sendTransaction: '/',
   reciveTransaction: '/reciveTransaction/',
+  balance: '/balance/',
 }

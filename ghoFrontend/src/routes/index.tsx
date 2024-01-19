@@ -6,6 +6,7 @@ import SendTransactionPage from '../pages/send';
 import RecieveTransactionPage from '../pages/recieve';
 import MessageSendSuccess from '../pages/sendMesssageSucces';
 import MessageRecieveSuccess from '../pages/recieveMesssageSucces';
+import Balance from '../pages/balance';
 const routesApp = [
   {
     path: routesNamesApp.sendTransaction,
@@ -14,6 +15,10 @@ const routesApp = [
   {
     path: routesNamesApp.reciveTransaction,
     element: <RecieveTransactionPage/>
+  },
+  {
+    path: routesNamesApp.balance,
+    element: <Balance/>
   },
 ]
 
