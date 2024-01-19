@@ -15,7 +15,7 @@
     "autoprefixer": "^10.4.16",
     "axios": "^1.6.1",
     "primeicons": "^6.0.1",
-    "primereact": "^10.0.9",
+    "primereact": "^9.3.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.48.2",
