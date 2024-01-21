@@ -6,3 +6,4 @@ export const walletFrom = import.meta.env.VITE_WALLET_FROM
 
 
 export const lsConversionData = 'lsConversionData';
+export const GHOAddress = "0xc4bF5CbDaBE595361438F8c6a187bDc330539c60";
