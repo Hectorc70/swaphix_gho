@@ -11,6 +11,7 @@ import coinIcon  from "../../assets/images/gho_coin.svg";
 import ButtonPrimary from "../../components/buttonPrimary";
 import TransactionService from "../../services/transaction_service";
 import { routesNames } from "../../routes/routes";
+import { getBalanceOfGHO, transferGHO } from "../../services/ghoUtils";
 
 const SendTransactionPage = () => {
    //=============  REACT FORM ============= 
@@ -28,6 +29,7 @@ const SendTransactionPage = () => {
 
   //=============  REACT FORM ============= 
   const [statusbutton, setStatusButton] = useState(StatusButton.Disabled);
+  const [balance, setBalance] = useState('');
   const dispatch = useDispatch();
   const navigate = useNavigate()
   const [execute, setExecute] = useState(false);
@@ -48,11 +50,11 @@ const SendTransactionPage = () => {
   useEffect(() => {
     console.log('Valor del campo cambiado:', amountWatched);
     if (amountWatched != undefined) {
-      if (amountWatched <= 0) {
-        console.log('Amount')
-        setError('amount', { type: 'manual', message: 'El monto debe ser mayor a 0' })
-        return
-      }
+      // if (amountWatched <= 0) {
+      //   console.log('Amount')
+      //   setError('amount', { type: 'manual', message: 'El monto debe ser mayor a 0' })
+      //   return
+      // }
       return
     }
     setError('amount', { type: 'manual', message: '' })
@@ -63,12 +65,12 @@ const SendTransactionPage = () => {
 
   const getBalance = async () =>{
     if(execute===false){
-      const response = await TransactionService.getBalance(walletFrom)
+      const response = await getBalanceOfGHO()
       setExecute(true)
       console.log(response)
-      if(response.status === 200 ){
-        setValue('amount', response.data.Balance)
-      }
+      // if(response.status === 200 ){
+      setBalance(response.toString())
+      // }
     }
   }
 
@@ -76,11 +78,12 @@ const SendTransactionPage = () => {
     try{
       setStatusButton(StatusButton.Loading)
       console.log('============== START TRANSACTION ============== ')
-      const response = await TransactionService.newTransaction();
-      console.log('============== START TRANSACTION RESPONSE ==============: ' +response.status)
-      if(response.status === 200){
-        navigate(routesNames.messageSendSuccess)
-      }
+      // const response = await TransactionService.newTransaction();
+      const response = await transferGHO(walletTo, amountWatched);
+      console.log('============== START TRANSACTION RESPONSE ==============: ' +response)
+      // if(response === 200){
+      navigate(routesNames.messageSendSuccess)
+      // }
       setStatusButton(StatusButton.Enabled)
   
     }
@@ -128,7 +131,7 @@ const SendTransactionPage = () => {
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className="w-full">
               <div className="relative">
-                <input className="inputNumber text-start" placeholder='0.0' type="number" {...register('amount',
+                <input className="inputNumber text-start" placeholder='0.0' type="text" {...register('amount',
                   {
                     required: {
                       value: true,
@@ -140,7 +143,7 @@ const SendTransactionPage = () => {
               </div>
             </div>
             <div className="w-full flex flex-row justify-end mt-1 mb-5" >
-              <span className="text-grayBold m-0"><strong className="mr-10">Disponible:</strong>   {'0.30 GHO'}</span>
+              <span className="text-grayBold m-0"><strong className="mr-10">Disponible:</strong>   {balance}</span>
             </div>
             {/* <div className="w-full flex flex-col justify-start">
                 <label htmlFor="email" className="labelTxt" >A una cuenta Swaphix:</label>

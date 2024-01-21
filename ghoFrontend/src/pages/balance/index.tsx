@@ -4,12 +4,12 @@ import { useNavigate } from "react-router-dom";
 import { WalletUser } from "../../models/wallet_model";
 import { ChangeIsBack } from "../../redux/mainSlice";
 import { useDispatch } from "react-redux";
-import TransactionService from "../../services/transaction_service";
-import { GHOAddress, walletFrom } from "../../common/constants/constants";
+// import TransactionService from "../../services/transaction_service";
+import { GHOAddress, walletFrom, walletTo } from "../../common/constants/constants";
 import toast from "react-hot-toast";
 import coin from "../../assets/images/gho_coin.svg";
 import { routesNamesApp } from "../../routes/routes";
-import { getNativeBalance } from "../../services/ghoUtils";
+import { getBalanceOfGHO } from "../../services/ghoUtils";
 
 
 
@@ -28,20 +28,20 @@ const Balance = () => {
   }
   const getBalance = async () =>{
     try{
-      const response = await getNativeBalance(GHOAddress)
-      console.log(response)
-      if(response.status === 200 ){
-        const responseBalance = await getNativeBalance(walletFrom)
-        const amount = parseFloat(responseBalance.data.Balance);
-        const balance = amount.toFixed(4);
-        const wallet = new WalletUser('GHO',walletFrom, balance, 'Ethereum Mainet')
-        const newData = [];
-        newData.push(wallet);
-        setWallet(newData);
+      // const response = await getBalanceOfGHO()
+      // console.log(response)
+      const responseBalance = await getBalanceOfGHO()
+      // const amount = parseFloat(responseBalance);
+      // const balance = amount.toFixed(4);
+      // debugger
+      const wallet = new WalletUser('GHO',walletTo, responseBalance, 'Ethereum Mainet')
+      const newData = [];
+      newData.push(wallet);
+      setWallet(newData);
   
-      }
     }catch(e:any){
-      toast.error(e.toString())
+      debugger
+      // toast.error(e.toString())
     }
     
   }
