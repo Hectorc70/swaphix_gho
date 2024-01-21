@@ -1,2 +1,4 @@
 ghoFrontend/.env
 ghoFrontend/node_modules/
+ghoUtils/.env
+ghoUtils/node_modules/
