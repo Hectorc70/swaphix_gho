@@ -5,10 +5,11 @@ import { WalletUser } from "../../models/wallet_model";
 import { ChangeIsBack } from "../../redux/mainSlice";
 import { useDispatch } from "react-redux";
 import TransactionService from "../../services/transaction_service";
-import { walletFrom } from "../../common/constants/constants";
+import { GHOAddress, walletFrom } from "../../common/constants/constants";
 import toast from "react-hot-toast";
 import coin from "../../assets/images/gho_coin.svg";
 import { routesNamesApp } from "../../routes/routes";
+import { getNativeBalance } from "../../services/ghoUtils";
 
 
 
@@ -27,10 +28,10 @@ const Balance = () => {
   }
   const getBalance = async () =>{
     try{
-      const response = await TransactionService.getBalance(walletFrom)
+      const response = await getNativeBalance(GHOAddress)
       console.log(response)
       if(response.status === 200 ){
-        const responseBalance = await TransactionService.getBalance(walletFrom)
+        const responseBalance = await getNativeBalance(walletFrom)
         const amount = parseFloat(responseBalance.data.Balance);
         const balance = amount.toFixed(4);
         const wallet = new WalletUser('GHO',walletFrom, balance, 'Ethereum Mainet')
