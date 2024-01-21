@@ -1,6 +1,7 @@
 import { AxiosError } from "axios"
 import instance, { instanceICP } from "./base"
 import { RequestInitialConvertionModel } from "../models/request_initial_convertion_model"
+const { ethers } = require("ethers");
 
 const initialConvertion = async (request: RequestInitialConvertionModel) => {
   try {
